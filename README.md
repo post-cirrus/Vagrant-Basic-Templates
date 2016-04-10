@@ -1,6 +1,4 @@
 # Vagrant-Dev-Templates
-<<<<<<< HEAD
-=======
 
 set git module url 
 
@@ -12,6 +10,3 @@ echo "Creating package.json in /home/vagrant"
 <br>
 
 Describe how to send the nodejs logs to elasticsearch <br>
-
-
->>>>>>> 02e432637f5c0d5516aaa0d4aeadd80204ba4c0b
