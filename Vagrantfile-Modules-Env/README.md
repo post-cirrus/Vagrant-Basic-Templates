@@ -1,4 +1,4 @@
-# Vagrant temaplte for Module Dev
+# Vagrant template file for Module Dev Environment
 
 This Vagrant file creates the necessary development environment for backend Modules developpment in Cirrus project.
 
