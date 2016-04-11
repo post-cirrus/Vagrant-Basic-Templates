@@ -1,18 +1,25 @@
 # Vagrant template file for Module Dev Environment
 
-This Vagrant file creates the necessary development environment for backend Modules developpment in Cirrus project.
+This Vagrant file creates the necessary development environment for backend Modules development in Cirrus project.
 
-This files contains: 
+Prerequist:
+- Virtualbox 5.0.14 or latest
+- Vagrant 1.8.1 or latest
 
-- Centos 7.1 
-- NodeJs 
-- NPM 
-- Git 
+This files contains:
+```
+- Centos 7.1
+- NodeJs
+- NPM
+- Git
+```
 
-Following NPM modules are also installes as global in the Dev environment: 
-- Winston@2.2.0 
-- Winston-elasticsearch@0.2.6 
-- ApiDoc@0.15.1 
+This NPM modules are installed as global in the Dev environment:
+```
+- Winston@2.2.0
+- Winston-elasticsearch@0.2.6
+- ApiDoc@0.15.1
+```
 
 To start this Vagrant:
 ```
@@ -20,9 +27,7 @@ vagrant up
 vagrant ssh
 
 ```
-
-Mandatory commands to run: 
-
+Follow the instructions to get started developing you first Cirrus Module:
 ```
-npm init 
-
+https://couldhardware.atlassian.net/wiki/plugins/createcontent/draft-createpage.action?draftId=9568283
+```
