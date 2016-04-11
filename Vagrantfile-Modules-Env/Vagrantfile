@@ -24,14 +24,14 @@ Vagrant.configure(2) do |config|
   # `vagrant box outdated`. This is not recommended.
   config.vm.box_check_update = false
 
-  # Create a forwarded port mapping which allows access to a specific port
+  # Create a forwardded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 10080
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.82.100"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -42,7 +42,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder "cirrus/module/", "/home/module/", create: true, owner: "root", group: "root"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -59,32 +59,38 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
 
   config.vm.provision "shell", inline: <<-SHELL
-     # echo "Running update command for Centos 'yum -y update'"
-     # sudo yum -y update
+     echo "Running update command for Centos 'yum -y update'"
+     sudo yum -y -q update
 
      echo "Installing EPEL repository required for nodejs installtion"
-     sudo yum -y install epel-release
+     sudo yum -y -q install epel-release
 
-     echo "Running install command to install nodejs 'yum -y install nodejs'"
-     sudo yum -y install nodejs
+     echo "Installing nodejs 'yum -y install nodejs'"
+     sudo yum -y -q install nodejs
 
-     echo "Running install command to install nodejs 'yum -y install nodejs'"
-     sudo yum -y install npm
+     echo "Installing npm 'yum -y install npm'"
+     sudo yum -y -q install npm
 
-     echo "Running install command to install nodejs 'yum -y install nodejs'"
-     sudo yum -y install git
+     echo "Installing Git 'yum -y install git'"
+     sudo yum -y -q install git
 
      echo "Versions installed"
      sudo git --version
      sudo node -v
      sudo npm -v
 
-     echo "Installing Winston nodejs required libraries"
-     sudo npm install -g winston@2.2.0 winston-elasticsearch@0.2.6
+     echo "Installing winston@2.2.0 and winston-elasticsearch@0.2.6 for nodejs to use as the logging provider"
+     sudo npm install -g winston@2.2.0 winston-elasticsearch@0.2.6 --loglevel silent
 
      echo "Installing apidoc to generate the required Documentation"
-     sudo npm install -g apidoc@0.15.1
+     sudo npm install -g apidoc@0.15.1 --loglevel silent
 
+     echo "Creating .gitignore"
+     sudo cd /home/module
+     sudo pwd
+     sudo echo "# NodeJS" >> .gitignore
+     sudo echo "node_modules" >> .gitignore
+     sudo echo "npm-debug.log" >> .gitignore
 
   SHELL
 
