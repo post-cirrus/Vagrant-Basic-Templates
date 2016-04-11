@@ -1,12 +1,10 @@
 # Vagrant-Dev-Templates
 
-set git module url 
+Here you find all the necessary Vagrant Boxes that are used to develop the Cirrus Project.
 
-create package.json (https://docs.npmjs.com/files/package.json) <br> 
-npm init <br>
-echo "Creating package.json in /home/vagrant"
-     sudo cd /home/vagrant
-     sudo npm init --force
-<br>
+Follow the steps: 
 
-Describe how to send the nodejs logs to elasticsearch <br>
+1. git clone  https://github.com/post-cirrus/Vagrant-Basic-Templates.git
+2. select a Vagrant box
+3. read the README.md file from that box to get started
+4. go to https://couldhardware.atlassian.net/wiki/display/DOC/Development
