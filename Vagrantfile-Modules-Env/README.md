@@ -9,7 +9,6 @@ Prerequist:
 To start Vagrant instaltion:
 ```
 vagrant up
-
 ```
 
 This Vagrant file will install :
