@@ -6,9 +6,16 @@ Prerequist:
 - Virtualbox 5.0.14 or latest
 - Vagrant 1.8.1 or latest
 
-This files contains:
+To start Vagrant instaltion:
 ```
-- Centos 7.1
+vagrant up
+
+```
+
+This Vagrant file will install :
+```
+- Centos 7.1 and run an update
+- EPEL repository
 - NodeJs
 - NPM
 - Git
@@ -21,11 +28,9 @@ This NPM modules are installed as global in the Dev environment:
 - ApiDoc@0.15.1
 ```
 
-To start this Vagrant:
+Now login into the Vagrant:
 ```
-vagrant up
 vagrant ssh
-
 ```
 Follow the instructions to get started developing you first Cirrus Module:
 ```
