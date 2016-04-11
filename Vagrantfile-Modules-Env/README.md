@@ -6,7 +6,7 @@ Prerequist:
 - Virtualbox 5.0.14 or latest
 - Vagrant 1.8.1 or latest
 
-To start Vagrant instaltion:
+To start Vagrant installation:
 ```
 vagrant up
 ```
