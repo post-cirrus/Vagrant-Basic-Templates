@@ -33,5 +33,5 @@ vagrant ssh
 ```
 Follow the instructions to get started developing you first Cirrus Module:
 ```
-[Create Module Development Structure] https://couldhardware.atlassian.net/wiki/plugins/createcontent/draft-createpage.action?draftId=9568283
+[Create Module Development Structure](https://couldhardware.atlassian.net/wiki/plugins/createcontent/draft-createpage.action?draftId=9568283)
 ```
