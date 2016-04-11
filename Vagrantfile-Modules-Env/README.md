@@ -31,6 +31,4 @@ Now login into the Vagrant:
 ```
 vagrant ssh
 ```
-Go to, to get started developing you first Cirrus Module:
-
-[Create Module Development Structure](https://couldhardware.atlassian.net/wiki/plugins/createcontent/draft-createpage.action?draftId=9568283)
+Now Go to [Create Module Development Structure](https://couldhardware.atlassian.net/wiki/plugins/createcontent/draft-createpage.action?draftId=9568283) and follow the instructions on how to setup your development space
