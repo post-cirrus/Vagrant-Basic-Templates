@@ -29,6 +29,15 @@ This Vagrant file will install :
 - Git
 ```
 
+The guest machine Vagrant synced_folder will be created as :
+```
+/home/vagrant
+```
+On the host machine the synced_folder will be created in :
+```
+<path-in-host-machine>/Vagrantfile-Modules-Env/cirrus/module
+```
+
 This NPM modules are installed as global in the Dev environment:
 ```
 - Winston@2.2.0
@@ -36,23 +45,11 @@ This NPM modules are installed as global in the Dev environment:
 - ApiDoc@0.15.1
 ```
 
-Now login into the Vagrant:
+Now login you can login in into your vagrant:
 ```
 vagrant ssh
-[vagrant@vagrant-api-dev ~]$ cd /home/module
-[vagrant@vagrant-api-dev ~]$ npm init (Will create the package.json)
 ```
 
-This Vagrant file will create relative path to make them accessible form the host machine
-
-The guest machine Vagrant synced_folder will be created as :
-```
-/home/modlue
-```
-On the host machine the synced_folder will be created in :
-```
-<path-in-host-machine>/Vagrantfile-Modules-Env/cirrus/module
-```
 
 
 Now Go to [Create Module Development Structure](https://couldhardware.atlassian.net/wiki/plugins/createcontent/draft-createpage.action?draftId=9568283) and follow the instructions on how to setup your development space
