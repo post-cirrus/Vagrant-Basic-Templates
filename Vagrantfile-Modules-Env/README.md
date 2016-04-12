@@ -9,10 +9,10 @@ Prerequist:
 
 Vagrant guest machine environment:
 ```
-**Synced Folder** = 'config.vm.synced_folder "cirrus/module", "/home/vagrant", create: true, owner: "root", group: "root"'
-**Network** = 'config.vm.network "public_network", ip : "192.168.82.100"'
-**Hostname** = 'config.vm.hostname = "vagrant-api-dev"'
-**Port Forward** = 'config.vm.network "forwarded_port", guest: 80, host: 10080'
+Synced Folder = 'config.vm.synced_folder "cirrus/module", "/home/vagrant", create: true, owner: "root", group: "root"'
+Network = 'config.vm.network "public_network", ip : "192.168.82.100"'
+Hostname = 'config.vm.hostname = "vagrant-api-dev"'
+Port Forward = 'config.vm.network "forwarded_port", guest: 80, host: 10080'
 ```
 
 To start Vagrant installation:
