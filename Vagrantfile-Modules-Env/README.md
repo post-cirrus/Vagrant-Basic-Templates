@@ -3,8 +3,9 @@
 This Vagrant file creates the necessary development environment for backend Modules development in Cirrus project.
 
 Prerequist:
-- Virtualbox 5.0.14 or latest
+- Virtualbox 5.0.16 or latest
 - Vagrant 1.8.1 or latest
+- Vagrant plugin vbguest (vagrant-vbguest (0.11.0))
 
 
 Vagrant guest machine environment:
@@ -16,12 +17,13 @@ Port Forward = 'config.vm.network "forwarded_port", guest: 80, host: 10080'
 
 To start Vagrant installation:
 ```
+vagrant plugin install vagrant-vbguest
 vagrant up
 ```
 
 This Vagrant file will install :
 ```
-- Centos 7.1 and run an update
+- Centos 7 x86 64 Minimal (1511)
 - EPEL repository
 - NodeJs
 - NPM
