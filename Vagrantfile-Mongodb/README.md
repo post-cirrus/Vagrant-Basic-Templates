@@ -1,3 +1,4 @@
-Vagrantfile-Web-Client-Env
+This is a test docker for Mongodb
+(well for now it's just a apache docker ... just playing around ;)
 
-use nginx a the webserver (http://nginx.org/)
+Just followed this tuto : http://scalarsoftware.com/setting-up-a-development-environment-with-vagrant-and-docker/
