@@ -51,4 +51,4 @@ Now login you can login in into your vagrant:
 vagrant ssh
 ```
 
-Now Go to [Create Development Structure](https://couldhardware.atlassian.net/wiki/plugins/createcontent/draft-createpage.action?draftId=9568283) and follow the instructions on how to setup your development structure.
+Now Go to [Create Development Structure](https://couldhardware.atlassian.net/wiki/display/DOC/Create+Development+Structure) and follow the instructions on how to setup your development structure.
