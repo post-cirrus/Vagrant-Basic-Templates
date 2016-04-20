@@ -12,6 +12,19 @@ Prerequist:
 To connect to the vagrant host : vagrant ssh <vm name as specified in the Vagrantfile in the config.vm.define>
 ```
 
+Aditionally, an example of a development environment consisting of multiple containers is provided. To run it you have
+to execute this command in the application root directory
+
+```bash
+$ vagrant up --no-parallel
+```
+
+After having bootstrapped the development environment either as a single or as multiple container mode, you can check the
+result by opening a browser pointing to http://192.168.82.101
+
+```bash
+open http://192.168.82.101
+```
 
 Vagrant guest machine environment:
 ```
