@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
 
  config.vm.define "app" do |app|
    app.vm.provider "docker" do |docker|
-     # docker.image = "debian"
+     docker.image = "debian"
      docker.volumes = %w(/var/www:/var/www)
      docker.name = "app"
      docker.vagrant_vagrantfile = __FILE__
