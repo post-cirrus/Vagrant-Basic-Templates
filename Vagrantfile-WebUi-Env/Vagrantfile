@@ -8,8 +8,6 @@
 
 Vagrant.require_version ">= 1.8.1"
 
-$APP_PATH="app/www"
-
 Vagrant.configure(2) do |config|
 
  config.vm.define "default", autostart: false do |default|
@@ -18,7 +16,7 @@ Vagrant.configure(2) do |config|
    default.vm.box_url = "https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos"
    default.vm.box_check_update = true
    default.vm.network "private_network", ip: "192.168.82.101"
-   default.vm.synced_folder "app/www", "/vagrant/", create: true 
+   default.vm.synced_folder "app/www", "/var/www", create: true 
    
    default.vm.provider "virtualbox" do |vb|
      # Customize the amount of memory on the VM:
@@ -27,33 +25,27 @@ Vagrant.configure(2) do |config|
 
  end
 
-
- config.vm.define "httpd", autostart: false do |httpd|
+ #
+ # Run Apache2 in Docker "vagrant up apache2"
+ #
+ config.vm.define "apache2", autostart: false do |httpd|
     httpd.vm.provider "docker" do |docker|
-      docker.image = "httpd"
-      docker.volumes = ["/vagrant:/usr/local/apache2/htdocs/"]
-      #docker.create_args = ['--volume="/home/vagrant:/usr/local/apache2/htdocs/"']
-      docker.ports = %w(80:80)
+      docker.build_dir = "environment/docker/config/httpd"
+      docker.volumes = ["/var/www:/usr/local/apache2/htdocs/"]
+      docker.ports = ["10180:80"]
       docker.vagrant_vagrantfile = __FILE__
     end
-  end
-
- config.vm.define "app" do |app|
-   app.vm.provider "docker" do |docker|
-     docker.image = "debian"
-     # docker.volumes = %w(/var/www:/var/www)
-     docker.name = "app"
-     docker.vagrant_vagrantfile = __FILE__
-     docker.remains_running = false
-   end
  end
 
+ #
+ # Run NGINX in the Docker "vagrant up nginx"
+ #
  config.vm.define "nginx" do |nginx|
    nginx.vm.provider "docker" do |docker|
-    docker.vagrant_vagrantfile = __FILE__ 
-    docker.image = "nginx"
-    docker.create_args = %w(--volumes-from="app")
-    docker.ports = ["80:80"]	
+    docker.build_dir = "environment/docker/config/nginx"
+    docker.volumes = ["/var/www:/usr/share/nginx/html"]
+    docker.ports = ["10181:80"]	
+    docker.vagrant_vagrantfile = __FILE__
    end
  end
 
