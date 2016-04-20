@@ -23,7 +23,7 @@ vagrant up
 
 This Vagrant file will install :
 ```
-- Centos 7 x86 64 Minimal (1511)
+- CirrusOS ([https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos](https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos))
 - EPEL repository
 - NodeJs
 - NPM
