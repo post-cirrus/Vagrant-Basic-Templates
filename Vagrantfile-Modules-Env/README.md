@@ -23,7 +23,7 @@ vagrant up
 
 This Vagrant file will install :
 ```
-- CirrusOS [https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos](https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos)
+- CirrusOS (https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos)
 - EPEL repository
 - NodeJs
 - NPM
