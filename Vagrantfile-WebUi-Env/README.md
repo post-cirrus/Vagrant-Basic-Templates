@@ -9,6 +9,10 @@ Prerequist:
 
 
 ```
+To sync folders : vagrant plugin install vagrant-gatling-rsync
+```
+
+```
 To connect to the vagrant host : vagrant ssh <vm name as specified in the Vagrantfile in the config.vm.define>
 ```
 

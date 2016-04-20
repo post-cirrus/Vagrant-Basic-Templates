@@ -8,6 +8,8 @@
 
 Vagrant.require_version ">= 1.8.1"
 
+$APP_PATH="app/www"
+
 Vagrant.configure(2) do |config|
 
  config.vm.define "default", autostart: false do |default|
@@ -15,10 +17,8 @@ Vagrant.configure(2) do |config|
    default.vm.box = "bubuplanet/cirrusos"
    default.vm.box_url = "https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos"
    default.vm.box_check_update = true
-   # default.vm.network "forwarded_port", guest: 80, host: 10081
    default.vm.network "private_network", ip: "192.168.82.101"
-   # default.vm.network "public_network"
-   # default.vm.synced_folder "cirrus/module/", "/home/vagrant/", create: true, owner: "root", group: "root"
+   default.vm.synced_folder "app/www", "/vagrant/", create: true 
    
    default.vm.provider "virtualbox" do |vb|
      # Customize the amount of memory on the VM:
@@ -31,7 +31,8 @@ Vagrant.configure(2) do |config|
  config.vm.define "httpd", autostart: false do |httpd|
     httpd.vm.provider "docker" do |docker|
       docker.image = "httpd"
-      #docker.volumes = %w(/var/www:/var/www)
+      docker.volumes = ["/vagrant:/usr/local/apache2/htdocs/"]
+      #docker.create_args = ['--volume="/home/vagrant:/usr/local/apache2/htdocs/"']
       docker.ports = %w(80:80)
       docker.vagrant_vagrantfile = __FILE__
     end
