@@ -31,7 +31,7 @@ For the Apache2 server a Dockerfile located at 'environment/docker/config/httpd/
 - Volume inside Docker '/usr/local/apache2/htdocs/'
 - Exposed Volume '/var/www'
 
-Launch the Apache 2 webserver:
+Start Apache 2 Server version 2.4 :
 ```bash
 vagrant up apache2
 ```
@@ -49,7 +49,7 @@ For the NGINX server a Dockerfile located at 'environment/docker/config/nginx/' 
 - Volume inside Docker '/usr/share/nginx/html'
 - Exposed Volume '/var/www'
 
-Start the NGINX server :
+Start the NGINX Server version 1.8.1 :
 ```bash
 vagrant up nginx
 ```
