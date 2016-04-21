@@ -1,2 +1,5 @@
 #Host File containing required DNS names
 192.168.82.100 authentication.cirrus.io
+192.168.82.101 captive.portal.cirrus.io
+192.168.82.102 clients.db.cirrus.io
+192.168.82.103 loggin.cirrus.io
