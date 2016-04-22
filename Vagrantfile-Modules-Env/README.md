@@ -9,7 +9,7 @@ This Vagrant file creates the necessary development environment for backend Modu
 
 ### Vagrant Development Environment
 
-#### This Vagrant file will install :
+##### This Vagrant file will install :
 ```
 - CirrusOS (https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos)
 - EPEL repository
@@ -25,14 +25,14 @@ This Vagrant file creates the necessary development environment for backend Modu
 - ApiDoc@0.15.1
 ```
 
-#### Vagrant guest machine environment:
+##### Vagrant guest machine environment:
 ```
 Network = 'config.vm.network "public_network", ip : "192.168.82.100"'
 Hostname = 'config.vm.hostname = "vagrant-api-dev"'
 Port Forward = 'config.vm.network "forwarded_port", guest: 80, host: 10080'
 ```
 
-#### Folders Info
+##### Folders Info
 Vagrant Gesut machine folder : 
 
 ```
@@ -52,7 +52,6 @@ vagrant plugin install vagrant-vbguest
 vagrant up
 ```
 
-```
 Now login you can login in into your vagrant:
 ```
 vagrant ssh
