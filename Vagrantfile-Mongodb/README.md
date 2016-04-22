@@ -1,4 +1,7 @@
 This is a test docker for Mongodb
-(well for now it's just a apache docker ... just playing around ;)
 
-Just followed this tuto : http://scalarsoftware.com/setting-up-a-development-environment-with-vagrant-and-docker/
+Run it using basic command : vagrant up
+
+Default port is exposed : 27017
+
+Db storage is done inside the docker for the moment
