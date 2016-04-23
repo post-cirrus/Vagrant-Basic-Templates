@@ -22,6 +22,7 @@ This Vagrant file creates the necessary development environment for backend Modu
 ```
 - Winston@2.2.0
 - Winston-elasticsearch@0.2.6
+- Elasticsearch@10.1.2
 - ApiDoc@0.15.1
 ```
 
