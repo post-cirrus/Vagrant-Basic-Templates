@@ -11,30 +11,47 @@ Vagrant.require_version ">= 1.8.1"
 
 Vagrant.configure(2) do |config|
 
-   config.vm.define "default", autostart: true do |default|
-     default.vm.hostname = "mongo"
-     default.vm.box = "bubuplanet/cirrusos"
-     default.vm.box_url = "https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos"
-     default.vm.box_check_update = true
-     default.vm.network "private_network", ip: "192.168.82.104"
-     default.vm.synced_folder ".", "/vagrant", create: true
+  config.vm.define "default", autostart: true do |default|
+    default.vm.hostname = "mongo"
+    default.vm.box = "bubuplanet/cirrusos"
+    default.vm.box_url = "https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos"
+    default.vm.box_check_update = true
+    default.vm.network "private_network", ip: "192.168.82.104"
+    default.vm.synced_folder ".", "/vagrant", create: true
 
-     default.vm.provider "virtualbox" do |vb|
-       # Customize the amount of memory on the VM:
-       vb.memory = "1024"
-     end
+    default.vm.provider "virtualbox" do |vb|
+      # Customize the amount of memory on the VM:
+      vb.memory = "1024"
+    end
 
-   end
+    default.vm.provision "docker" do |docker|
+      docker.build_image "/vagrant/environment/docker/config/mongo", args: '-t "cirrusmongo"'
+    end
 
-   #
-   # Run Apache2 in Docker "vagrant up apache2"
-   #
-   config.vm.define "mongo", autostart: true do |db|
-      db.vm.provider "docker" do |docker|
-        docker.build_dir = "environment/docker/config/mongo"
-        docker.ports = ["27017:27017"]
-        docker.vagrant_vagrantfile = __FILE__
-      end
-   end
+  end
+  #
+  # Run mongo in Docker
+  #
+  config.vm.define "mongo", autostart: true do |db|
+    db.vm.provider "docker" do |docker|
+      docker.image = "mongo"
+      docker.name = "mongo"
+      docker.volumes = ["/vagrant:/data"]
+      docker.ports = ["27017:27017"]
+      docker.vagrant_vagrantfile = __FILE__
+    end
+  end
+  #
+  # Run mongo-express in Docker
+  #
+  config.vm.define "mongo-express", autostart: true do |db|
+    db.vm.provider "docker" do |docker|
+      docker.image = "mongo-express"
+      docker.name = "mongo-express"
+      docker.link("mongo:mongo")
+      docker.ports = ["8081:8081"]
+      docker.vagrant_vagrantfile = __FILE__
+    end
+  end
 
- end
+end

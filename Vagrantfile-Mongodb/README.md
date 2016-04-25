@@ -1,7 +1,19 @@
-This is a test docker for Mongodb
+Basic environment for Mongodb development
+This vagrantfile will bring up :
+- cirrusos as vm box
+- MongoDb (mongo:latest)
+- mongo-express (mongo-express:latest)
 
-Run it using basic command : vagrant up
+1/ Edit your hosts file and add (at least) the db.cirrus.io entry
 
-Default port is exposed : 27017
+2/ Launch the vagrant file
+Warning - you have to run it with the --no-parallel option :
 
-Db storage is done inside the docker for the moment
+bash> vagrant up --no-parallel
+
+3/ Access your environment
+
+Mongodb : db.cirrus.io:27017
+Admin gui : http://db.cirrus.io:8081
+
+MongoDB data folder is mapped to this root folder
