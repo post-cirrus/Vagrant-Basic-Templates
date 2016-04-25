@@ -45,12 +45,6 @@ Vagrant.configure(2) do |config|
      sudo node -v
      sudo npm -v
 
-     echo "Installing winston@2.2.0 and winston-elasticsearch@0.2.6 for nodejs to use as the logging provider"
-     sudo npm install -g winston@2.2.0 winston-elasticsearch@0.2.6 --loglevel silent
-
-     echo "Installing apidoc to generate the required Documentation"
-     sudo npm install -g apidoc@0.15.1 --loglevel silent
-
   SHELL
 
 end

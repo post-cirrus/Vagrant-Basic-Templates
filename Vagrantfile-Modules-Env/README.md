@@ -18,13 +18,6 @@ This Vagrant file creates the necessary development environment for backend Modu
 - Git
 ```
 
-##### This NPM modules are installed as global in the Dev environment:
-```
-- Winston@2.2.0
-- Winston-elasticsearch@0.2.6
-- ApiDoc@0.15.1
-```
-
 ##### Vagrant guest machine environment:
 ```
 Network = 'config.vm.network "public_network", ip : "192.168.82.100"'
