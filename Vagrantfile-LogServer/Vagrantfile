@@ -26,6 +26,7 @@ Vagrant.configure(2) do |config|
    default.vm.provision "docker" do |docker|
      docker.build_image "/vagrant/environment/docker/config/elk", args: "-t vagrantdocker/elasticserach"
      docker.build_image "/vagrant/environment/docker/config/kibana", args: "-t vagrantdocker/kibana"
+     docker.build_image "/vagrant/environment/docker/config/logstash", args: "-t vagrantlogstash/logstash"
    end
 
  end
@@ -39,6 +40,20 @@ Vagrant.configure(2) do |config|
     e.vm.provider "docker" do |docker|
       docker.image = "vagrantdocker/elasticserach"
       docker.name = "elasticserach"
+      docker.volumes = ["/vagrant:/usr/share/elasticsearch/data"]
+      docker.ports = ["9200:9200","9300:9300"]
+      docker.vagrant_vagrantfile = __FILE__
+    end
+ end
+
+
+ #
+ # Logstash
+ #
+ config.vm.define "logstash" do |l|
+    l.vm.provider "docker" do |docker|
+      docker.image = "vagrantdocker/logstash"
+      docker.name = "logstash"
       docker.volumes = ["/vagrant:/usr/share/elasticsearch/data"]
       docker.ports = ["9200:9200","9300:9300"]
       docker.vagrant_vagrantfile = __FILE__
