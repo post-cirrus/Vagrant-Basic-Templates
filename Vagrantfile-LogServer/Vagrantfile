@@ -16,16 +16,17 @@ Vagrant.configure(2) do |config|
    default.vm.box_url = "https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos"
    default.vm.box_check_update = true
    default.vm.network "private_network", ip: "192.168.82.102"
-   default.vm.synced_folder ".", "/vagrant", create: true 
+   default.vm.synced_folder ".", "/vagrant", create: true
  
    default.vm.provider "virtualbox" do |vb|
      # Customize the amount of memory on the VM:
-     vb.memory = "1024"
+     vb.memory = "2048"
    end
 
    default.vm.provision "docker" do |docker|
      docker.build_image "/vagrant/environment/docker/config/elk", args: "-t vagrantdocker/elasticserach"
      docker.build_image "/vagrant/environment/docker/config/kibana", args: "-t vagrantdocker/kibana"
+     docker.build_image "/vagrant/environment/docker/config/logstash", args: "-t vagrantdocker/logstash"
    end
 
  end
@@ -34,12 +35,11 @@ Vagrant.configure(2) do |config|
  #
  # Logstash : run logstash standalone vagrant up logstash
  #
- config.vm.define "logstash", autostart: false do |l|
+ config.vm.define "logstash", autostart: true do |l|
     l.vm.provider "docker" do |docker|
       docker.image = "logstash:2.3.1"
       docker.name = "logstash"
       docker.create_args = %w(-it -v /vagrant:/config-dir logstash -f /config-dir/logstash.conf)
-      docker.volumes = ["/vagrant:/var/log"]
       docker.ports = ["28777:28777"]
       docker.vagrant_vagrantfile = __FILE__
     end
