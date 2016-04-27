@@ -17,6 +17,7 @@ Vagrant.configure(2) do |config|
    default.vm.box_check_update = true
    default.vm.network "private_network", ip: "192.168.82.102"
    default.vm.synced_folder ".", "/vagrant", create: true
+
  
    default.vm.provider "virtualbox" do |vb|
      # Customize the amount of memory on the VM:
@@ -24,7 +25,7 @@ Vagrant.configure(2) do |config|
    end
 
    default.vm.provision "docker" do |docker|
-     docker.build_image "/vagrant/environment/docker/config/elk", args: "-t vagrantdocker/elasticserach"
+     docker.build_image "/vagrant/environment/docker/config/elk", args: "-t vagrantdocker/elasticsearch"
      docker.build_image "/vagrant/environment/docker/config/kibana", args: "-t vagrantdocker/kibana"
      docker.build_image "/vagrant/environment/docker/config/logstash", args: "-t vagrantdocker/logstash"
    end
@@ -35,12 +36,12 @@ Vagrant.configure(2) do |config|
  #
  # Logstash : run logstash standalone vagrant up logstash
  #
- config.vm.define "logstash", autostart: true do |l|
+ config.vm.define "logstash", autostart: false do |l|
     l.vm.provider "docker" do |docker|
       docker.image = "logstash:2.3.1"
       docker.name = "logstash"
       docker.create_args = %w(-it -v /vagrant:/config-dir logstash -f /config-dir/logstash.conf)
-      docker.ports = ["28777:28777"]
+      docker.ports = ["31311:31311"]
       docker.vagrant_vagrantfile = __FILE__
     end
  end
@@ -50,10 +51,10 @@ Vagrant.configure(2) do |config|
  #
  # Elasticsearch
  #
- config.vm.define "elasticserach" do |e|
+ config.vm.define "elasticsearch", autostart: false do |e|
     e.vm.provider "docker" do |docker|
-      docker.image = "vagrantdocker/elasticserach"
-      docker.name = "elasticserach"
+      docker.image = "vagrantdocker/elasticsearch"
+      docker.name = "elasticsearch"
       docker.volumes = ["/vagrant:/usr/share/elasticsearch/data"]
       docker.ports = ["9200:9200","9300:9300"]
       docker.vagrant_vagrantfile = __FILE__
@@ -63,7 +64,7 @@ Vagrant.configure(2) do |config|
  #
  # Kibana
  #
- config.vm.define "kibana" do |kibana|
+ config.vm.define "kibana", autostart: false do |kibana|
    kibana.vm.provider "docker" do |docker|
     docker.image = "vagrantdocker/kibana"
     docker.name = "kibana"
