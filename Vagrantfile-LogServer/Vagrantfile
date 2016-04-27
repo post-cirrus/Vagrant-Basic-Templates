@@ -46,10 +46,8 @@ Vagrant.configure(2) do |config|
     end
  end
 
- # To run tll ath the same 'vagrant up --no-parallel
-
  #
- # Elasticsearch
+ # Elasticsearch : run elasticsearch vagrant up elasticsearch
  #
  config.vm.define "elasticsearch", autostart: false do |e|
     e.vm.provider "docker" do |docker|
@@ -62,7 +60,7 @@ Vagrant.configure(2) do |config|
  end
 
  #
- # Kibana
+ # Kibana : vagrant up Kibana
  #
  config.vm.define "kibana", autostart: false do |kibana|
    kibana.vm.provider "docker" do |docker|
