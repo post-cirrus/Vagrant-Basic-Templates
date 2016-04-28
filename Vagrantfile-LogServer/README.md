@@ -49,7 +49,7 @@ ex: open http://192.168.82.102:5601
 #### Strating Logstash as a Docker container
 For the Logstash a Dockerfile located at 'environment/docker/config/logstash/' is used to build the image, at stratup logstash will load the 'logstash.conf' file.
 
-##### NGINX Docker info:
+##### Logstash Docker info:
 - Exposed port '31311'
 - Config file 'logstash.conf'
 
