@@ -38,7 +38,7 @@ vagrant up apache2
 
 After having bootstrapped the development environment you can check the result by opening a browser pointing to http://192.168.82.101:10180
 ```bash
-open http://192.168.82.101:10180
+open http://192.168.82.101:10180 or http://captive.portal.cirrus.io:10180
 ```
 
 #### Strating NGINX as a Docker container
@@ -56,7 +56,7 @@ vagrant up nginx
 
 After having bootstrapped the development environment you can check the result by opening a browser pointing to http://192.168.82.101:10181
 ```bash
-open http://192.168.82.101:10181
+open http://192.168.82.101:10181 or http://captive.portal.cirrus.io:10180
 ```
 
 ## Next step
