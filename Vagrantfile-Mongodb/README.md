@@ -2,8 +2,8 @@
 
 This vagrantfile will bring up :
 - cirrusos as vm box
-- MongoDb (mongo:latest)
-- mongo-express (mongo-express:latest)
+- MongoDb docker (mongo:3.2.5)
+- mongo-express docker (mongo-express:0.30.52)
 
 ## Setup and startup
 
