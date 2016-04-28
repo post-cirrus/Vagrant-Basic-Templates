@@ -25,7 +25,8 @@ Vagrant.configure(2) do |config|
     end
 
     default.vm.provision "docker" do |docker|
-      docker.build_image "/vagrant/environment/docker/config/mongo", args: '-t "cirrusmongo"'
+      docker.build_image "/vagrant/environment/docker/config/mongo", args: '-t "mongo"'
+      docker.build_image "/vagrant/environment/docker/config/mongo-express", args: '-t "mongo-express"'
     end
 
   end
