@@ -56,7 +56,7 @@ vagrant up nginx
 
 After having bootstrapped the development environment you can check the result by opening a browser pointing to http://192.168.82.101:10181 or http://captive.portal.cirrus.io:10180
 ```bash
-ex: http://captive.portal.cirrus.io:10180
+ex: open http://captive.portal.cirrus.io:10180
 ```
 
 ## Next step
