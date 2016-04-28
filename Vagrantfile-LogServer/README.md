@@ -29,7 +29,7 @@ For the Kibana server a Dockerfile located at 'environment/docker/config/kibana/
 ##### Elastisearch Docker info:
 - Exposed port 9200, 9300
 - Volume inside Docker '/usr/share/elasticsearch/data/'
-- Exposed Volume '/vagrant'
+- Exposed Volume '/elasticsearch'
 
 ##### Kibana Docker info:
 - Exposed port 5601
