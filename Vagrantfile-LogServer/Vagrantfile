@@ -46,10 +46,12 @@ Vagrant.configure(2) do |config|
     end
  end
 
+ # RUN: vagrant up --no-parallel
  #
- # Elasticsearch : run elasticsearch vagrant up elasticsearch
  #
- config.vm.define "elasticsearch", autostart: false do |e|
+ # Elasticsearch 
+ #
+ config.vm.define "elasticsearch", autostart: true do |e|
     e.vm.provider "docker" do |docker|
       docker.image = "vagrantdocker/elasticsearch"
       docker.name = "elasticsearch"
@@ -60,9 +62,9 @@ Vagrant.configure(2) do |config|
  end
 
  #
- # Kibana : vagrant up Kibana
+ # Kibana 
  #
- config.vm.define "kibana", autostart: false do |kibana|
+ config.vm.define "kibana", autostart: true do |kibana|
    kibana.vm.provider "docker" do |docker|
     docker.image = "vagrantdocker/kibana"
     docker.name = "kibana"
