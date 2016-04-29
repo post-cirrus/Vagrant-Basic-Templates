@@ -16,12 +16,14 @@ Vagrant.configure(2) do |config|
    default.vm.box_url = "https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos"
    default.vm.box_check_update = true
    default.vm.network "private_network", ip: "192.168.82.102"
-   default.vm.synced_folder ".", "/vagrant", create: true
+   default.vm.synced_folder ".", "/vagrant", create: false
+   default.vm.synced_folder ".", "/vagrant/elasticsearch", create: true
 
  
    default.vm.provider "virtualbox" do |vb|
      # Customize the amount of memory on the VM:
      vb.memory = "2048"
+     vb.name = "LoggingServer"
    end
 
    default.vm.provision "docker" do |docker|
@@ -40,8 +42,8 @@ Vagrant.configure(2) do |config|
     l.vm.provider "docker" do |docker|
       docker.image = "logstash:2.3.1"
       docker.name = "logstash"
-      docker.create_args = %w(-it -v /vagrant:/config-dir logstash -f /config-dir/logstash.conf)
-      docker.ports = ["31311:31311"]
+      docker.create_args = %w(-it -v /vagrant:/config-dir logstash -f /config-dir/logstash.conf --verbose)
+      docker.ports = ["9997:9997","9998:9998","9999:9999"]
       docker.vagrant_vagrantfile = __FILE__
     end
  end
@@ -55,7 +57,7 @@ Vagrant.configure(2) do |config|
     e.vm.provider "docker" do |docker|
       docker.image = "vagrantdocker/elasticsearch"
       docker.name = "elasticsearch"
-      docker.volumes = ["/vagrant:/usr/share/elasticsearch/data"]
+      docker.volumes = ["/vagrant/elasticsearch:/usr/share/elasticsearch/data"]
       docker.ports = ["9200:9200","9300:9300"]
       docker.vagrant_vagrantfile = __FILE__
     end

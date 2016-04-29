@@ -1,5 +1,4 @@
 FROM logstash:2.3.1
-# RUN usermod -u 1000 elasticsearch
-# COPY lab.logstash.conf 
+# COPY
 # Exposed Port
-EXPOSE 28777 
+EXPOSE 9997,9998,9999
