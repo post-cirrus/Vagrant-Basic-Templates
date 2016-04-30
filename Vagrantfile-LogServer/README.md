@@ -50,7 +50,7 @@ ex: open http://192.168.82.102:5601
 For the Logstash a Dockerfile located at 'environment/docker/config/logstash/' is used to build the image, at stratup logstash will load the 'logstash.conf' file.
 
 ##### Logstash Docker info:
-- Exposed port '31311'
+- Exposed ports : udp => 9999, tcp => 9998, http => 9997
 - Config file 'logstash.conf'
 
 Start the Logstash  :
