@@ -34,7 +34,16 @@ For the Kibana server a Dockerfile located at 'environment/docker/config/kibana/
 ##### Kibana Docker info:
 - Exposed port 5601
 
-Start Elasticsearch and Kibaana :
+##### Logstash Docker info:
+- Exposed ports : 
+	--udp => 9999
+	--tcp => 9998
+	--http => 9997
+- Config file 'logstash.conf'
+
+## Start the Logging Server
+
+Start the Logging Server (Elasticsearch, Kibana & Logstash :
 ```bash
 vagrant up --no-parallel
 ```
@@ -42,31 +51,14 @@ vagrant up --no-parallel
 After having bootstrapped the development environment you can check the result by opening a browser pointing to
 - Kibana @ http://192.168.82.102:5601 or http://logger.cirrus.io:5601
 - Elasticsearch @ http://192.168.82.102:9200 or http://logger.cirrus.io:9200
+- Logstash @udp:9999 or @tcp:9998 or @http:9997 
 ```bash
-ex: open http://192.168.82.102:5601
-```
-
-#### Strating Logstash as a Docker container
-For the Logstash a Dockerfile located at 'environment/docker/config/logstash/' is used to build the image, at stratup logstash will load the 'logstash.conf' file.
-
-##### Logstash Docker info:
-- Exposed ports : udp => 9999, tcp => 9998, http => 9997
-- Config file 'logstash.conf'
-
-Start the Logstash  :
-```bash
-vagrant up logstash
-```
-
-After having bootstrapped the development environment you can check the result by opening a browser pointing to http://logger.cirrus.io:31311 or http://192.168.82.102:31311
-```bash
-telnet logger.cirrus.io 31311
+telnet logger.cirrus.io 9999 or 9998 or 9997
 ```
 
 ## Next step
 
-Now you ready to start development, go to [Development Page](https://couldhardware.atlassian.net/wiki/display/DOC/Development) and follow the "Step-by-step guide" your require for your project.
-
+Now you ready to start development, go to [Development Page](https://couldhardware.atlassian.net/wiki/display/DOC/Development).
 
 ## INFO: 
 When starting one or more Docker Containers a vagrant box is booted to be used a the base OS for the Docker containers. This is done to ensure that the development environment meets the staging environment. You can connect to the vagrant box :         

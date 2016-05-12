@@ -35,21 +35,8 @@ Vagrant.configure(2) do |config|
  end
 
 
- #
- # Logstash : run logstash standalone vagrant up logstash
- #
- config.vm.define "logstash", autostart: false do |l|
-    l.vm.provider "docker" do |docker|
-      docker.image = "logstash:2.3.1"
-      docker.name = "logstash"
-      docker.create_args = %w(-it -v /vagrant:/config-dir logstash -f /config-dir/logstash.conf --verbose)
-      docker.ports = ["9997:9997","9998:9998","9999:9999"]
-      docker.vagrant_vagrantfile = __FILE__
-    end
- end
-
  # RUN: vagrant up --no-parallel
- #
+ 
  #
  # Elasticsearch 
  #
@@ -75,6 +62,19 @@ Vagrant.configure(2) do |config|
     docker.create_args = %w(-e ELASTICSEARCH_URL=http://192.168.82.102:9200)
     docker.vagrant_vagrantfile = __FILE__
    end
+ end
+
+ #
+ # Logstash
+ #
+ config.vm.define "logstash", autostart: true do |l|
+    l.vm.provider "docker" do |docker|
+      docker.image = "logstash:2.3.1"
+      docker.name = "logstash"
+      docker.create_args = %w(-it -v /vagrant:/config-dir logstash -f /config-dir/logstash.conf --verbose)
+      docker.ports = ["9997:9997","9998:9998","9999:9999"]
+      docker.vagrant_vagrantfile = __FILE__
+    end
  end
 
 end
