@@ -35,10 +35,10 @@ For the Kibana server a Dockerfile located at 'environment/docker/config/kibana/
 - Exposed port 5601
 
 ##### Logstash Docker info:
-- Exposed ports : 
-	--udp => 9999
-	--tcp => 9998
-	--http => 9997
+- Exposed ports :
+	- udp => 9999 
+	- tcp => 9998 
+	- http => 9997 
 - Config file 'logstash.conf'
 
 ## Start the Logging Server
