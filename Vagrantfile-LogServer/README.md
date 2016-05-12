@@ -53,7 +53,9 @@ After having bootstrapped the development environment you can check the result b
 - Elasticsearch @ http://192.168.82.102:9200 or http://logger.cirrus.io:9200
 - Logstash @udp:9999 or @tcp:9998 or @http:9997 
 ```bash
-telnet logger.cirrus.io 9999 or 9998 or 9997
+telnet logger.cirrus.io 9999 or 9998 or 9997 # Test Logstash listing
+wget http://logger.cirrus.io:9200 # Test Logstash listing
+wget http://192.168.82.102:5601 # Test Logstash listing
 ```
 
 ## Next step
