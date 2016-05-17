@@ -1,0 +1,28 @@
+[Loggers]
+    #Enable Debugging
+    debug = true
+    # Log to Console when running the module
+    logToConsole = false
+    # Log To File
+    logToFile = true
+    # Boolean flag indicating if we should colorize output.
+    logFileColorize = true
+    #Logging directory to use
+    # //TODO : 'consider creating a sysmlink to /var/log or create the logging directory directley'
+    logFileDir = 'log'
+    #Output the log entries in JSON format to log file
+    logFileJson = true
+    # Max size in bytes of the logfile, if the size is exceeded then a
+    # new file is created, a counter will become a suffix of the log file.
+    maxSize = '1000000' # 1Mbyte
+    # Limit the number of files created when the size of the logfile is exceeded.
+    maxFiles = '10'
+    # If true, log files will be rolled based on maxsize and maxfiles, but in ascending order.
+    # The filename will always have the most recent log lines. The larger the appended number, the older the log file.
+    # This option requires maxFiles to be set, or it will be ignored.
+    tailable = true
+
+[AuthAPI]
+    [google]
+    [fb]
+    [twitter]
