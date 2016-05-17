@@ -1,0 +1,3 @@
+.gitignore export-ignore
+node_module export-ignore
+.gitattributes export-ignore
