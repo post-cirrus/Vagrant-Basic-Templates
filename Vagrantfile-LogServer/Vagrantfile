@@ -18,7 +18,6 @@ Vagrant.configure(2) do |config|
    default.vm.network "private_network", ip: "192.168.82.102"
    default.vm.synced_folder ".", "/vagrant", create: false
    default.vm.synced_folder ".", "/vagrant/elasticsearch", create: true
-
  
    default.vm.provider "virtualbox" do |vb|
      # Customize the amount of memory on the VM:
@@ -71,7 +70,7 @@ Vagrant.configure(2) do |config|
     l.vm.provider "docker" do |docker|
       docker.image = "logstash:2.3.1"
       docker.name = "logstash"
-      docker.create_args = %w(-it -v /vagrant:/config-dir logstash -f /config-dir/logstash.conf --verbose)
+      docker.create_args = %w(-it -v /vagrant:/config-dir logstash -f /config-dir/logstash.conf --verbose --auto-reload)
       docker.ports = ["9997:9997","9998:9998","9999:9999"]
       docker.vagrant_vagrantfile = __FILE__
     end
