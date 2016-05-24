@@ -1,30 +1,25 @@
-﻿(function () {
+(function () {
     'use strict'
 
     // Create new module logToServer with new $log service
      angular.module('logToServer', [])
         // Make AngularJS do JavaScript logging through JSNLog so we can log to the server by replacing the $log service
         .service('$log', function () {
-            this.log = function (msg) {
+            this.log = function (msg) { // Level 1000
                 JL('Angular').trace(msg);
             }
-            this.debug = function (msg) {
+            this.debug = function (msg) { // Level 2000
                 JL('Angular').debug(msg);
             }
-            this.info = function (msg) {
+            this.info = function (msg) { // Level 3000
                 JL('Angular').info(msg);
             }
-            this.warn = function (msg) {
+            this.warn = function (msg) { // Level 4000
                 JL('Angular').warn(msg);
             }
-            this.error = function (msg) {
+            this.error = function (msg) { // Level 5000
                 JL('Angular').error(msg);
             }
-
-            JL.setOptions({
-                'defaultAjaxUrl': 'http://logger.cirrus.io:9997/jsnlog.logger',
-                'requestId': window.location.pathname.split("/").pop()
-            })
         })
         // Replace the factory that creates the standard $exceptionHandler service
         .factory('$exceptionHandler', function () {
@@ -45,7 +40,7 @@
                 'response': function (response) {
                     var msAfterAjaxCall = new Date().getTime();
                     var timeTakenInMs = msAfterAjaxCall - response.config.msBeforeAjaxCall;
-                    JL('Angular.Ajax').info({
+                    JL('Angular.Ajax').debug({
                         url: response.config.url,
                         timeTakenInMs: timeTakenInMs
                     });
@@ -63,6 +58,19 @@
                 }
             };
             return myInterceptor;
-        }]);
+        }])
+
+        // Inject Angular $location object and set options
+        .run(function($location) {
+          JL.setOptions({
+              'defaultAjaxUrl': 'http://logger.cirrus.io:9997/jsnlog.logger',
+              'requestId': $location.url()
+          });
+
+          // Set root logger in Trace level. Not for production ...
+          JL().setOptions({
+            "level" : JL.getTraceLevel()
+          })
+        });
 
 })();

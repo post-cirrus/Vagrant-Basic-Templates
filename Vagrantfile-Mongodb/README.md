@@ -28,3 +28,14 @@ Admin gui : http://db.cirrus.io:8081
 ```
 
 MongoDB data folder is mapped to this folder
+
+
+
+## TODO
+
+on base box
+
+sudo yum install epel-release
+sudo yum install syslog-ng
+=> config mongo docker logs to syslog-ng
+=> forward syslog-ng to logstash
