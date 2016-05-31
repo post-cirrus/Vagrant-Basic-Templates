@@ -50,6 +50,9 @@ Now login you can login in into your vagrant:
 vagrant ssh
 ```
 
+## List of Vagrant Module files
+- Vagrantfile-CirrusDbQL : Vagrant file that has environment setup to run the CirrusDbQL API server
+
 ## Next Step
 
 Now Go to [Create Development Structure](https://couldhardware.atlassian.net/wiki/display/DOC/Create+Development+Structure) and follow the instructions on how to setup your development structure.
