@@ -1,0 +1,62 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+
+$MODULE_IP = "192.168.82.105"
+$MODULE_GUEST_PORT = 80
+$MODULE_HOST_PORT = 10080
+
+Vagrant.require_version ">= 1.8.1"
+
+Vagrant.configure(2) do |config|
+  
+  config.vm.hostname = "cirrusdbql"
+  config.vm.box = "bubuplanet/cirrusos"
+
+  config.vm.box_url = "https://atlas.hashicorp.com/bubuplanet/boxes/cirrusos"
+  config.vm.box_check_update = true
+
+  config.vm.network "forwarded_port", guest: $MODULE_GUEST_PORT, host: $MODULE_HOST_PORT = 10080
+  config.vm.network "private_network", ip: $MODULE_IP
+
+  config.vm.synced_folder "cirrus/module", "/vagrant", create: true
+
+  config.vm.provider "virtualbox" do |vb|
+     # Customize the amount of memory on the VM:
+     vb.memory = "1024"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+     echo "Running update command for Centos 'yum -y update'"
+     sudo yum -y -q update
+
+     echo "Installing EPEL repository required for nodejs installtion"
+     sudo yum -y -q install epel-release
+
+     echo "Installing nodejs, npm, git, wget and syslog-ng"
+     sudo yum -y -q install nodejs npm git syslog-ng
+
+     echo "Versions installed"
+     sudo git --version
+     sudo node -v
+     sudo npm -v
+
+     echo "Downloading latests syslog-ng file"
+     sudo curl -H "Authorization: token 425efd9d7060f8b2fdac34fe9b0f66ca93fa12eb" -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/post-cirrus/Vagrant-Basic-Templates/contents/Vagrantfile-LogServer/config/client/syslog/syslog-ng.conf
+
+     echo "Copying syslog-ng.conf to /etc/syslog/syslog-ng.conf"
+     mv syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
+
+     echo "Downloading hosts file"
+     sudo sudo curl -H "Authorization: token 425efd9d7060f8b2fdac34fe9b0f66ca93fa12eb" -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/post-cirrus/Vagrant-Basic-Templates/contents/hosts
+
+     echo "Adding hosts content to exiting /etc/hosts file"
+     sudo cat hosts >> /etc/hosts
+   
+  SHELL
+
+end
