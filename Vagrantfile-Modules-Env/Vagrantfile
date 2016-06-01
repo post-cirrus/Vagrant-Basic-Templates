@@ -57,6 +57,11 @@ Vagrant.configure(2) do |config|
 
      echo "Adding hosts content to exiting /etc/hosts file"
      sudo cat hosts >> /etc/hosts
+
+     echo "Installing standard, nodemon, apidoc
+     sudo npm install -g nodemon
+     sudo npm install -g standard
+     sudo npm install -g apidoc 
    
   SHELL
 
