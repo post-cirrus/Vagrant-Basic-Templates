@@ -31,6 +31,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
+     sudo yum makecache fast
      echo "Running update command for Centos 'yum -y update'"
      sudo yum -y -q update
 
