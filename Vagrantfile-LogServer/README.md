@@ -68,3 +68,17 @@ When starting one or more Docker Containers a vagrant box is booted to be used a
 ```bash
 vagrant ssh default
 ```
+
+
+## Troubleshooting
+Sometimes when you start the LogServer module, you might not be able to reach Kibana web page because you'll see the following message : "Elasticsearch is still initializing the kibana index" about the Elasticsearch plugin.
+To fix it, simply log in your vagrant host delete .kibana file and restart the docker. On windows the procedure is :
+
+```bash
+D:\Vagrantfile-LogServer> vagrant ssh default
+Last login: Wed May 25 22:18:24 2016 from gateway
+[vagrant@loggingserver ~]$ curl -XDELETE http://localhost:9200/.kibana
+{"acknowledged":true
+}[vagrant@loggingserver ~]$ docker restart elasticsearch
+elasticsearch
+```
