@@ -61,4 +61,10 @@ var logger = new winston.Logger({
   exitOnError: false
 })
 
+logger.stream = {
+  write: function (message, encoding) {
+    logger.info(message)
+  }
+}
+
 module.exports = logger
