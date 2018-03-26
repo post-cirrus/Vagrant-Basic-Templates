@@ -47,13 +47,13 @@ Vagrant.configure(2) do |config|
      sudo npm -v
 
      echo "Downloading latests syslog-ng file"
-     sudo curl -H "Authorization: token 425efd9d7060f8b2fdac34fe9b0f66ca93fa12eb" -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/post-cirrus/Vagrant-Basic-Templates/contents/Vagrantfile-LogServer/config/client/syslog/syslog-ng.conf
+     sudo curl -H "Authorization: token " -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/post-cirrus/Vagrant-Basic-Templates/contents/Vagrantfile-LogServer/config/client/syslog/syslog-ng.conf
 
      echo "Copying syslog-ng.conf to /etc/syslog/syslog-ng.conf"
      mv syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
 
      echo "Downloading hosts file"
-     sudo sudo curl -H "Authorization: token 425efd9d7060f8b2fdac34fe9b0f66ca93fa12eb" -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/post-cirrus/Vagrant-Basic-Templates/contents/hosts
+     sudo sudo curl -H "Authorization: token " -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/post-cirrus/Vagrant-Basic-Templates/contents/hosts
 
      echo "Adding hosts content to exiting /etc/hosts file"
      sudo cat hosts >> /etc/hosts
